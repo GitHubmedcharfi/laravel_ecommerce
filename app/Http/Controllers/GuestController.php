@@ -15,8 +15,27 @@ class GuestController extends Controller
     {
         $products = Product::all();
         $categories = Category::all();
-        return view('guest.home')->with('products', $products)->with('categories', $categories);
+        return view('guest.home')->with('products', $products)->with('categories', $categories)->with('product', $products);
     }
+    public function productDetails($id){
+        $products = Product::find($id);
+        $productss = Product::where('id', '!=', $id)->get();
+        $categories = Category::all();
+        return view('guest.product_detail')->with('categories', $categories)->with('product', $products)->with('productss', $productss);
+    }
+    public function shop($idcategory){
+        $category=category::find($idcategory);
+        $products = $category->products;
+        $categories = Category::all();
+        return view('guest.shop')->with('categories', $categories)->with('products', $products);    
+    }
+    public function search(request $request){
+   
+        $products = Product::where('name', 'LIKE', '%'. $request->keywords.'%')->get();
+        $categories = Category::all();
+        return view('guest.shop')->with('categories', $categories)->with('products', $products);
+    }
+    
     public function index()
     {
         //

@@ -45,4 +45,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    protected function commandes()
+    {
+        return $this->hasMany(Commande::class, 'client_id');
+}
 }

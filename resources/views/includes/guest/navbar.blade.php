@@ -9,7 +9,7 @@
                 <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                   
                 @foreach ($categories as $item)
-                    <a href="" class="nav-link text-dark border-bottom py-3">
+                    <a href="/shop/{{ $item->id}}/list" class="nav-link text-dark border-bottom py-3">
                         <i class="fa fa-angle-right text-primary"></i>
                         {{ $item->name }}
                     </a>
